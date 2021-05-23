@@ -1,2 +1,2 @@
 # CPP
-A selection of projects coded in modern C++
+A selection of projects coded in modern C++.
