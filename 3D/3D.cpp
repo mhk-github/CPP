@@ -19,9 +19,9 @@
 #pragma comment(lib, "glfw3.lib")
 #pragma comment(lib, "OpenGL32.lib")
 
-#pragma comment(lib, "boost_filesystem-vc142-mt-x32-1_76.lib")
-#pragma comment(lib, "boost_log_setup-vc142-mt-x32-1_76.lib")
-#pragma comment(lib, "boost_log-vc142-mt-x32-1_76.lib")
+#pragma comment(lib, "boost_filesystem-vc142-mt-x32-1_77.lib")
+#pragma comment(lib, "boost_log_setup-vc142-mt-x32-1_77.lib")
+#pragma comment(lib, "boost_log-vc142-mt-x32-1_77.lib")
 
 #ifdef _DEBUG
 #pragma comment(lib, "glad_mt_Debug_x86_0_1_34.lib")
@@ -64,8 +64,6 @@ const auto COLOUR_DIVISOR{ 256.0f };
 
 // Related to setting the title do the 3D display window
 const auto* GLAD_VERSION_STRING{ L"0.1.34" };
-const auto* GLM_VERSION_STRING{ L"0.9.9.8" };
-const auto* BOOST_LIBRARY_VERSION{ L"1.75.0" };
 #ifdef _DEBUG
 const auto* BASE_TITLE{ "3D [Debug] " };
 #else
@@ -234,15 +232,15 @@ int wmain ( int argc, wchar_t *argv[], wchar_t *envp[] )
   }
   BOOST_LOG_SEV(log3d,info) << "  Successfully loaded 3D data from B3D input file '" << input_file << "'";
 
-  BOOST_LOG_SEV(log3d,debug) << "  GLAD: GLAD version = " << GLAD_VERSION_STRING;
-  BOOST_LOG_SEV(log3d,debug) << "  GLM: GLM version = " << GLM_VERSION_STRING;
-  BOOST_LOG_SEV(log3d,debug) << "  BOOST: Boost library version = " << BOOST_LIBRARY_VERSION;
+  BOOST_LOG_SEV(log3d,debug) << "  GLAD: version " << GLAD_VERSION_STRING;
+  BOOST_LOG_SEV(log3d,debug) << "  " << GLM_VERSION_MESSAGE;
+  BOOST_LOG_SEV(log3d,debug) << "  BOOST: version " << BOOST_LIB_VERSION;
   auto glfw_major{ 0 };
   auto glfw_minor{ 0 };
   auto glfw_revision{ 0 };
   glfwGetVersion ( &glfw_major, &glfw_minor, &glfw_revision );
-  BOOST_LOG_SEV(log3d,debug) << "  GLFW: GLFW version = " << glfw_major << "." << glfw_minor << "." << glfw_revision;
-  BOOST_LOG_SEV(log3d,trace) << "    GLFW: GLFW version string = " << glfwGetVersionString ();
+  BOOST_LOG_SEV(log3d,debug) << "  GLFW: version " << glfw_major << "." << glfw_minor << "." << glfw_revision;
+  BOOST_LOG_SEV(log3d,trace) << "    GLFW: version string = '" << glfwGetVersionString () << "'";
 
   glfwSetErrorCallback ( error_callback );
   BOOST_LOG_SEV(log3d,info) << "  GLFW: glfwSetErrorCallback(...) succeeded";
@@ -278,7 +276,7 @@ int wmain ( int argc, wchar_t *argv[], wchar_t *envp[] )
   // Query the OpenGL system
   BOOST_LOG_SEV(log3d,debug) << "  OPENGL: Vendor = " << glGetString ( GL_VENDOR );
   BOOST_LOG_SEV(log3d,debug) << "  OPENGL: Renderer = " << glGetString ( GL_RENDERER );
-  BOOST_LOG_SEV(log3d,debug) << "  OPENGL: Version string = " << glGetString ( GL_VERSION );
+  BOOST_LOG_SEV(log3d,debug) << "  OPENGL: Version string = '" << glGetString ( GL_VERSION ) << "'";
   GLint gl_major_version{};
   glGetIntegerv( GL_MAJOR_VERSION, &gl_major_version );
   BOOST_LOG_SEV(log3d,trace) << "    OPENGL: Major version = " << gl_major_version;

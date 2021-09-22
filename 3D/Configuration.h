@@ -547,7 +547,7 @@ namespace Config
       }
 
     }
-    catch ( std::exception& e )
+    catch ( const std::exception& e )
     {
       std::wcerr << "Exception during parsing of configuration file '"
         << config_file << "': " << e.what () << "\n";
