@@ -18,8 +18,8 @@
 
 // LINKER DIRECTIVES //////////////////////////////////////////////////////////
 
-#pragma comment(lib, "boost_log_setup-vc142-mt-x32-1_76.lib")
-#pragma comment(lib, "boost_log-vc142-mt-x32-1_76.lib")
+#pragma comment(lib, "boost_log_setup-vc142-mt-x32-1_77.lib")
+#pragma comment(lib, "boost_log-vc142-mt-x32-1_77.lib")
 
 
 
