@@ -40,16 +40,31 @@ using namespace boost::log::trivial;
  * @{
  */
 
+/// The title to set on the main window.
 const auto * TITLE{L"BackgroundChanger (v1.1)"};
 
+/// Status bar text during loading of image data.
 const wxString LOADED_IMAGES{L"Loaded images"};
+
+/// Status bar text for when the \c Fill radio button is clicked.
 const wxString FILL_CHOSEN{L"'Fill' selected"};
+
+/// Status bar text for when the \c Fit radio button is clicked.
 const wxString FIT_CHOSEN{L"'Fit' selected"};
+
+/// Status bar text for when the \c Stretch radio button is clicked.
 const wxString STRETCH_CHOSEN{L"'Stretch' selected"};
+
+/// Status bar text for when the \c Centre radio button is clicked.
 const wxString CENTRE_CHOSEN{L"'Centre' selected"};
+
+/// Status bar text for when the \c Tile radio button is clicked.
 const wxString TILE_CHOSEN{L"'Tile' selected"};
 
+/// The maximum width in pixels for a thumbnail image.
 const auto THUMBNAIL_MAX_WIDTH{128};
+
+/// The maximum height in pixels for a thumbnail image.
 const auto THUMBNAIL_MAX_HEIGHT{128};
 
 /**
@@ -294,7 +309,7 @@ MainFrame::MainFrame(
   BOOST_LOG_SEV(g_Log,debug) << "  Leave - MainFrame::MainFrame()";
 }
 
-void MainFrame::OnFillClicked (wxCommandEvent&)
+void MainFrame::OnFillClicked (wxCommandEvent &event)
 {
   BOOST_LOG_SEV(g_Log,debug) << "  Enter MainFrame::OnFillClicked(...)";
   UpdateRegistry (WALLPAPER_FILL, false);
@@ -303,7 +318,7 @@ void MainFrame::OnFillClicked (wxCommandEvent&)
   BOOST_LOG_SEV(g_Log,debug) << "  Leave MainFrame::OnFillClicked(...)";
 }
 
-void MainFrame::OnFitClicked (wxCommandEvent&)
+void MainFrame::OnFitClicked (wxCommandEvent &event)
 {
   BOOST_LOG_SEV(g_Log,debug) << "  Enter MainFrame::OnFitClicked(...)";
   UpdateRegistry (WALLPAPER_FIT, false);
@@ -312,7 +327,7 @@ void MainFrame::OnFitClicked (wxCommandEvent&)
   BOOST_LOG_SEV(g_Log,debug) << "  Leave MainFrame::OnFitClicked(...)";
 }
 
-void MainFrame::OnStretchClicked (wxCommandEvent&)
+void MainFrame::OnStretchClicked (wxCommandEvent &event)
 {
   BOOST_LOG_SEV(g_Log,debug) << "  Enter MainFrame::OnStretchClicked(...)";
   UpdateRegistry (WALLPAPER_STRETCH, false);
@@ -321,7 +336,7 @@ void MainFrame::OnStretchClicked (wxCommandEvent&)
   BOOST_LOG_SEV(g_Log,debug) << "  Leave MainFrame::OnStretchClicked(...)";
 }
 
-void MainFrame::OnCentreClicked (wxCommandEvent&)
+void MainFrame::OnCentreClicked (wxCommandEvent &event)
 {
   BOOST_LOG_SEV(g_Log,debug) << "  Enter MainFrame::OnCentreClicked(...)";
   UpdateRegistry (WALLPAPER_CENTRE, false);
@@ -330,7 +345,7 @@ void MainFrame::OnCentreClicked (wxCommandEvent&)
   BOOST_LOG_SEV(g_Log,debug) << "  Leave MainFrame::OnCentreClicked(...)";
 }
 
-void MainFrame::OnTileClicked (wxCommandEvent&)
+void MainFrame::OnTileClicked (wxCommandEvent &event)
 {
   BOOST_LOG_SEV(g_Log,debug) << "  Enter MainFrame::OnTileClicked(...)";
   UpdateRegistry (WALLPAPER_CENTRE, true);
@@ -456,7 +471,7 @@ void MainFrame::OnThumbnailsStart (wxThreadEvent &event)
   BOOST_LOG_SEV(g_Log,debug) << "  Leave - MainFrame::OnThumbnailsStart(...)";
 }
 
-void MainFrame::OnThumbnailsDone (wxThreadEvent&)
+void MainFrame::OnThumbnailsDone (wxThreadEvent &event)
 {
   BOOST_LOG_SEV(g_Log,debug) << "  Enter - MainFrame::OnThumbnailsDone(...)";
 

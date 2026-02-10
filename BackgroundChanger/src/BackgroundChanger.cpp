@@ -32,24 +32,32 @@ using namespace boost::log::trivial;
 ///////////////////////////////////////////////////////////////////////////////
 
 /**
- * @addtogroup CONSTANTS
+ * @brief The log file to associate with this invocation of the application.
  *
- * @{
+ * @ingroup CONSTANTS
  */
-
 const auto * LOG_FILE{L"\\BackgroundChanger_x86_%Y%m%d_%H%M%S.log"};
-
-/**
- * @}
- */
 
 
 ///////////////////////////////////////////////////////////////////////////////
 // FUNCTION DECLARATIONS
 ///////////////////////////////////////////////////////////////////////////////
 
-void init_logging (const std::wstring&);
-LONG WINAPI UnhandledExceptionHandler (EXCEPTION_POINTERS*);
+/**
+ * @brief Configures logging sinks, formatting, and severity filtering.
+ *
+ * @param[in] logDirectory Canonical path to log files directory.
+ */
+void init_logging (const std::wstring &logDirectory);
+
+/**
+ * @brief Windows-level fallback for uncaught exceptions.
+ *
+ * @param[in] ep Pointer to exception context provided by Windows.
+ *
+ * @returns EXCEPTION_EXECUTE_HANDLER
+ */
+LONG WINAPI UnhandledExceptionHandler (EXCEPTION_POINTERS *ep);
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -68,7 +76,7 @@ void init_logging (const std::wstring &logDirectory)
   boost::log::core::get ()->set_filter (severity >= debug);
 }
 
-LONG WINAPI UnhandledExceptionHandler (EXCEPTION_POINTERS*)
+LONG WINAPI UnhandledExceptionHandler (EXCEPTION_POINTERS *ep)
 {
   BOOST_LOG_SEV(g_Log,fatal) << "Unhandled exception in Windows !";
   boost::log::core::get ()->flush ();
@@ -80,10 +88,24 @@ LONG WINAPI UnhandledExceptionHandler (EXCEPTION_POINTERS*)
 // CLASS DECLARATIONS
 //////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @brief The wxWidgets application class for this project.
+ */
 class BackgroundChangerApp final : public wxApp
 {
 public:
+  /**
+   * @brief Performs application initialization.
+   *
+   * @returns Returns \c true only on successful initialization.
+   */
   bool OnInit () override;
+
+  /**
+   * @brief Performs application cleanup before exit.
+   *
+   * @returns Exit code to give to the operating system.
+   */
   int OnExit () override;
 };
 
